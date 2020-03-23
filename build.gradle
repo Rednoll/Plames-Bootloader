@@ -48,8 +48,6 @@ dependencies {
 	compile group: 'io.github.classgraph', name: 'classgraph', version: '4.8.52'
 	
 	compile project(':Plames-API')
-	compile project(':Plames-Cross-Chat-Module')
-	compile project(':Plames-Discord-Module')
 }
 
 test {
