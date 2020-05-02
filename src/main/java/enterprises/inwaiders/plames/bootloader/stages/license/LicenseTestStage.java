@@ -20,9 +20,11 @@ public class LicenseTestStage extends StageBase{
 	
 	public void run(Set<Module> modules) {
 		
+		LicenseTestStrategy strategy = PlamesBootloader.VERIFICATION_STRATEGY;
+		
 		for(Module module : modules) {
 			
-			LicenseTestResult result = PlamesBootloader.VERIFICATION_STRATEGY.verificate(module);
+			LicenseTestResult result = strategy.verificate(module);
 		
 			if(result.isBad()) {
 				

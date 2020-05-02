@@ -1,9 +1,12 @@
 package enterprises.inwaiders.plames;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +48,7 @@ import enterprises.inwaiders.plames.bootloader.stages.impl.PreInitStage;
 import enterprises.inwaiders.plames.bootloader.stages.impl.RegistrationStage;
 import enterprises.inwaiders.plames.bootloader.stages.license.LicenseTestStage;
 import enterprises.inwaiders.plames.bootloader.stages.license.LicenseTestStrategy;
-import enterprises.inwaiders.plames.bootloader.stages.license.strategies.BaseLicenseTestStrategy;
+import enterprises.inwaiders.plames.bootloader.stages.license.strategies.BaseModuleLicenseTestStrategy;
 
 @Configuration
 @EnableCaching
@@ -57,7 +60,7 @@ public class PlamesBootloader {
 	
 	public static Logger LOGGER = LoggerFactory.getLogger(PlamesBootloader.class);
 	
-	public static LicenseTestStrategy VERIFICATION_STRATEGY = new BaseLicenseTestStrategy();
+	public static LicenseTestStrategy VERIFICATION_STRATEGY = new BaseModuleLicenseTestStrategy();
 	
 	public static DuplicationResolveStrategy DUPLICATION_STRATEGY = new BaseDuplicationResolveStrategy();
 	
@@ -66,6 +69,10 @@ public class PlamesBootloader {
 	public static ObjectMapper JSON = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	
 	public static File DATA_FOLDER = new File("./data");
+	
+	public static Properties MAIN_PROPS = null;
+	
+	public static boolean CONFIGURATION_REQUIRED = false; 
 	
 	public static void main(String[] args) {
 		
@@ -79,6 +86,34 @@ public class PlamesBootloader {
 		if(args.contains("--DataFolder: ")) {
 			
 			DATA_FOLDER = new File(args.get(args.indexOf("--DataFolder")+1));
+		}
+		
+		File propertiesFile = new File(DATA_FOLDER, "main.properties");
+		
+		MAIN_PROPS = new Properties();
+		
+		boolean validateResult = validateMainProps(MAIN_PROPS);
+		
+		if(!validateResult) {
+			
+			CONFIGURATION_REQUIRED = true;
+			return;
+		}
+		
+		if(propertiesFile.exists()) {
+			
+			try {
+				
+				MAIN_PROPS.load(new FileInputStream(propertiesFile));
+			}
+			catch(FileNotFoundException e) {
+				
+				e.printStackTrace();
+			}
+			catch(IOException e) {
+
+				e.printStackTrace();
+			}
 		}
 		
 		System.out.println("==========================================================================");
@@ -99,6 +134,16 @@ public class PlamesBootloader {
 		Stage startStage = getDefaultBootSequence();
 	
 		startStage.run(modules);
+	}
+	
+	private static boolean validateMainProps(Properties props) {
+		
+		if(!props.containsKey("product_key")) {
+			
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public static Stage getDefaultBootSequence() {

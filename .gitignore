@@ -40,3 +40,8 @@ compile-run.bat
 run.bat
 
 /old .git
+
+bin
+/test work directory
+gradle
+src/main/resources/static/node_modules

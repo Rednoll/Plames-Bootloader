@@ -33,6 +33,20 @@ jar{
     version = '1.0'
 }
 
+task webpack(type:Exec) {
+	
+	workingDir "$projectDir/src/main/resources/static"
+	
+	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+		
+		commandLine "cmd", "/c", "webpack"
+	}
+	else {
+		
+		commandLine "webpack"
+	}
+}
+
 dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

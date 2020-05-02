@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 plugins {
 	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -53,6 +55,20 @@ dependencies {
 	compile group: 'io.github.classgraph', name: 'classgraph', version: '4.8.52'
 	
 	compile project(':Plames-API')
+}
+
+task webpack(type:Exec) {
+	
+	workingDir "$projectDir/src/main/resources/static"
+	
+	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+		
+		commandLine "cmd", "/c", "webpack"
+	}
+	else {
+		
+		commandLine "webpack"
+	}
 }
 
 test {
