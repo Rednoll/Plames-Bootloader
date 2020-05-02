@@ -14,7 +14,7 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
 		
 		if(PlamesBootloader.CONFIGURATION_REQUIRED) {
 			
-			if(!request.getContextPath().startsWith("/bootloader/config")) {
+			if(!request.getRequestURI().startsWith("/bootloader/config")) {
 				
 				response.sendRedirect("/bootloader/config");
 			
