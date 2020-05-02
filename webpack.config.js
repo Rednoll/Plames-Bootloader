@@ -6,10 +6,10 @@ module.exports = {
 	mode: "development",
 	entry: {
 		
-		config: "./bootloader/config/main.jsx"
+		config: "./src/main/resources/static/bootloader/config/main.jsx"
 	},
 	output: {
-		path: path.join(__dirname, 'bootloader/generated'),
+		path: path.join(__dirname, '/src/main/resources/static/bootloader/generated'),
 		filename: '[name].bundle.js'
 	},
 	resolve: {

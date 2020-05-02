@@ -50,7 +50,7 @@ jar{
 
 task webpack(type:Exec) {
 	
-	workingDir "$projectDir/src/main/resources/static"
+	workingDir "$projectDir"
 	
 	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
 		
