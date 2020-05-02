@@ -6,7 +6,7 @@ module.exports = {
 	mode: "development",
 	entry: {
 		
-		add_part: "./bootloader/config/main.jsx"
+		config: "./bootloader/config/main.jsx"
 	},
 	output: {
 		path: path.join(__dirname, 'bootloader/generated'),
