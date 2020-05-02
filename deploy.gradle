@@ -28,24 +28,11 @@ bootJar {
    enabled = false
 }
 
-sourceSets {
-
-    main {
-	
-		resources {
-		
-			exclude 'static/node_modules/**'
-		}
-   }
-}
-
 jar{
 
 	enabled = true
     baseName = 'Plames-Bootloader' 
     version = '1.0'
-	
-	exclude("static/node_modules/**");
 }
 
 task webpack(type:Exec) {
@@ -62,7 +49,7 @@ task webpack(type:Exec) {
 	}
 }
 
-jar.dependsOn webpack
+processResources.dependsOn webpack
 
 dependencies {
 
