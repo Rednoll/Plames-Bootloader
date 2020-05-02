@@ -92,14 +92,6 @@ public class PlamesBootloader {
 		
 		MAIN_PROPS = new Properties();
 		
-		boolean validateResult = validateMainProps(MAIN_PROPS);
-		
-		if(!validateResult) {
-			
-			CONFIGURATION_REQUIRED = true;
-			return;
-		}
-		
 		if(propertiesFile.exists()) {
 			
 			try {
@@ -114,6 +106,14 @@ public class PlamesBootloader {
 
 				e.printStackTrace();
 			}
+		}
+		
+		boolean validateResult = validateMainProps(MAIN_PROPS);
+		
+		if(!validateResult) {
+			
+			CONFIGURATION_REQUIRED = true;
+			return;
 		}
 		
 		System.out.println("==========================================================================");
