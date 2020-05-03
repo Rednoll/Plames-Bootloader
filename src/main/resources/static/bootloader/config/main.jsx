@@ -6,6 +6,7 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
 
 import styles from "./jss_styles.js";
 import mainTheme from "../common/jss_styles.jsx";
