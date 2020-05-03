@@ -18,8 +18,6 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
 			
 			if(!request.getRequestURI().startsWith("/bootloader/config")) {
 				
-				System.out.println("intercepted: "+request.getRequestURI());
-				
 				response.sendRedirect("/bootloader/config");
 			
 				return false;
