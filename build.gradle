@@ -59,15 +59,16 @@ dependencies {
 
 task webpack(type:Exec) {
 	
-	workingDir "$projectDir"
+	inputs.file("package-lock.json") 
+	inputs.dir("src")
 	
 	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
 		
-		commandLine "cmd", "/c", "webpack"
+		commandLine "cmd", "/c", "$projectDir/node_modules/.bin/webpack"
 	}
 	else {
 		
-		commandLine "webpack"
+		commandLine "$projectDir/node_modules/.bin/webpack"
 	}
 }
 
