@@ -65,7 +65,7 @@ task webpack(type:Exec) {
 	}
 	else {
 		
-		commandLine ""webpack"
+		commandLine "webpack"
 	}
 }
 
