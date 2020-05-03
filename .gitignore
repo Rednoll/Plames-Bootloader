@@ -44,3 +44,4 @@ run.bat
 /bin
 /test work directory
 /gradle
+/node_modules

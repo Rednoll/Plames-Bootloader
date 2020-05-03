@@ -57,21 +57,6 @@ dependencies {
 	compile project(':Plames-API')
 }
 
-task webpack(type:Exec) {
-	
-	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
-		
-		commandLine "cmd", "/c", "webpack"
-	}
-	else {
-		
-		commandLine "webpack"
-	}
-}
-
-processResources.dependsOn webpack
-
-
 test {
 	useJUnitPlatform()
 }
