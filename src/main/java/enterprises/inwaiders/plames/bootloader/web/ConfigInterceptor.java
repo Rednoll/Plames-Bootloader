@@ -12,6 +12,7 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
+		/*
 		if(PlamesBootloader.CONFIGURATION_REQUIRED) {
 			
 			if(request.getRequestURI().startsWith("/resources")) return true;
@@ -23,7 +24,7 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
 				return false;
 			}
 		}
-		
+		*/
 		return true;
 	}
 }
