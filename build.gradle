@@ -58,7 +58,7 @@ dependencies {
 }
 
 task webpack(type:Exec) {
-
+	
 	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
 		
 		commandLine "cmd", "/c", "webpack"
