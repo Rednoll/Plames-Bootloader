@@ -41,6 +41,6 @@ run.bat
 
 /old .git
 
-bin
+/bin
 /test work directory
-gradle
+/gradle
