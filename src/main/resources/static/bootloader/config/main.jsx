@@ -71,7 +71,7 @@ class Config extends React.Component {
 				})}
 
 				</Stepper>
-				<div>
+				</div>
 
 			</div>
 			</ThemeProvider>
