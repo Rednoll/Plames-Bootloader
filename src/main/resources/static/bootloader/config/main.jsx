@@ -51,8 +51,13 @@ class Config extends React.Component {
 			<ThemeProvider theme={mainTheme}>
 			<div style={{display: "flex", flexDirection: "column"}}>
 
-				{steps[this.state.activeStep].ui()}
+				<div style={{flexGrow: "3.5"}}>
 
+					{steps[this.state.activeStep].ui()}
+
+				</div>
+
+				<div style={{position: "relative", height: "40", flexBasis: "80px", flexShrink: "0.0000001"}}>
 				<Stepper alternativeLabel nonLinear activeStep={this.state.activeStep}>
 
 				{steps.map((step, index)=> {
@@ -66,6 +71,7 @@ class Config extends React.Component {
 				})}
 
 				</Stepper>
+				<div>
 
 			</div>
 			</ThemeProvider>
