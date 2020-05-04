@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import enterprises.inwaiders.plames.PlamesBootloader;
-
 public class ConfigInterceptor extends HandlerInterceptorAdapter {
 
 	@Override

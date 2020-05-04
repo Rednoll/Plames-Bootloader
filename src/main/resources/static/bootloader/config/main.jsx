@@ -15,8 +15,41 @@ import ClipboardJS from "clipboard";
 
 let steps = [
 	
-	{ui: ()=> {return <ProductKeyStage />}, name: "Verify product key"}
+	{ui: ()=> {return <ProductKeyStage />}, name: "Product key verification"},
+	{ui: ()=> {return <DatabaseInitStage />}, name: "Database settings"},
+	{ui: ()=> {return <RootUserInitStage />}, name: "Root user settings"}
+
 ];
+
+class RootUserInitStage extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+	}
+
+	render() {
+
+		return(
+
+		);
+	}
+}
+
+class DatabaseInitStage extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+	}
+
+	render() {
+
+		return(
+
+		);
+	}
+}
 
 class ProductKeyStage extends React.Component {
 
