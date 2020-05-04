@@ -15,7 +15,7 @@ import ClipboardJS from "clipboard";
 
 let steps = [
 	
-	{ui: <ProductKeyStage />, name: "Verify product key"}
+	{ui: ()=> {return <ProductKeyStage />}, name: "Verify product key"}
 ];
 
 class ProductKeyStage extends React.Component {
@@ -50,7 +50,7 @@ class Config extends React.Component {
 
 			<div style={{display: "flex", flexDirection: "column"}}>
 
-				{steps[this.state.activeStep].ui}
+				{steps[this.state.activeStep].ui()}
 
 				<Stepper alternativeLabel nonLinear activeStep={this.state.activeStep}>
 
