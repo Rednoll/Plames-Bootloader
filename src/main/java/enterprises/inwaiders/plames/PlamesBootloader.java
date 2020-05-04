@@ -83,6 +83,20 @@ public class PlamesBootloader {
 	
 	public static void bootload(List<String> args) {
 		
+		System.out.println("==========================================================================");
+		System.out.println();
+		System.out.println("   _ _          ___     ___      _ _     ╔═══╗ ╔╗   ╔══╗ ╔╗  ╔╗ ╔═══╗ ╔══╗\n" + 
+				" /     \\      /    /  /    /   /     \\   ║╔═╗║ ║║   ║╔╗║ ║║  ║║ ║╔══╝ ║╔═╝\n" + 
+				"|       |    /    /  /    /   |       |  ║╚═╝║ ║║   ║╚╝║ ║╚╗╔╝║ ║╚══╗ ║╚═╗\n" + 
+				"|       |   /    /  /    /    |       |  ║╔══╝ ║║   ║╔╗║ ║╔╗╔╗║ ║╔══╝ ╚═╗║\n" + 
+				" \\ _ _ /   /___ /  /___ /      \\ _ _ /   ║║    ║╚═╗ ║║║║ ║║╚╝║║ ║╚══╗ ╔═╝║\n" + 
+				"                                         ╚╝    ╚══╝ ╚╝╚╝ ╚╝  ╚╝ ╚═══╝ ╚══╝");
+		System.out.println();
+		System.out.println("			:: Plames Bootloader 1V ::");
+		System.out.println();
+		System.out.println("==========================================================================");
+		
+		
 		if(args.contains("--DataFolder: ")) {
 			
 			DATA_FOLDER = new File(args.get(args.indexOf("--DataFolder")+1));
@@ -115,19 +129,6 @@ public class PlamesBootloader {
 			CONFIGURATION_REQUIRED = true;
 			return;
 		}
-		
-		System.out.println("==========================================================================");
-		System.out.println();
-		System.out.println("   _ _          ___     ___      _ _     ╔═══╗ ╔╗   ╔══╗ ╔╗  ╔╗ ╔═══╗ ╔══╗\n" + 
-				" /     \\      /    /  /    /   /     \\   ║╔═╗║ ║║   ║╔╗║ ║║  ║║ ║╔══╝ ║╔═╝\n" + 
-				"|       |    /    /  /    /   |       |  ║╚═╝║ ║║   ║╚╝║ ║╚╗╔╝║ ║╚══╗ ║╚═╗\n" + 
-				"|       |   /    /  /    /    |       |  ║╔══╝ ║║   ║╔╗║ ║╔╗╔╗║ ║╔══╝ ╚═╗║\n" + 
-				" \\ _ _ /   /___ /  /___ /      \\ _ _ /   ║║    ║╚═╗ ║║║║ ║║╚╝║║ ║╚══╗ ╔═╝║\n" + 
-				"                                         ╚╝    ╚══╝ ╚╝╚╝ ╚╝  ╚╝ ╚═══╝ ╚══╝");
-		System.out.println();
-		System.out.println("			:: Plames Bootloader 1V ::");
-		System.out.println();
-		System.out.println("==========================================================================");
 		
 		ModulesContainer modules = ModuleRegistry.getModules().getNonDeepCopy();
 		
