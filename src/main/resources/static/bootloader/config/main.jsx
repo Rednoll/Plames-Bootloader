@@ -14,8 +14,8 @@ import mainTheme from "../common/jss_styles.jsx";
 import ClipboardJS from "clipboard";
 
 let steps = [
-		
-	<ProductKeyStage />
+	
+	{ui: <ProductKeyStage />, name: "Verify product key"}
 ];
 
 class ProductKeyStage extends React.Component {
@@ -30,11 +30,6 @@ class ProductKeyStage extends React.Component {
 		return (
 			<Typography>чет типо того</Typography>
 		);
-	}
-
-	getName() {
-
-		return "Verify product key";
 	}
 }
 
@@ -55,7 +50,7 @@ class Config extends React.Component {
 
 			<div style={{display: "flex", flexDirection: "column"}}>
 
-				{steps[this.state.activeStep]}
+				{steps[this.state.activeStep].ui}
 
 				<Stepper alternativeLabel nonLinear activeStep={this.state.activeStep}>
 
@@ -63,8 +58,8 @@ class Config extends React.Component {
 
 					return (
 						
-						<Step key={step.getName()}>
-                        	<StepLabel completed={this.state.activeStep > index}>{step.getName()}</StepLabel>
+						<Step key={step.name}>
+                        	<StepLabel completed={this.state.activeStep > index}>{step.name}</StepLabel>
                         </Step>
 					);
 				})}
