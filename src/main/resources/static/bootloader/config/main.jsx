@@ -31,7 +31,7 @@ class RootUserInitStage extends React.Component {
 	render() {
 
 		return(
-
+			<Typography>чет типо того</Typography>
 		);
 	}
 }
@@ -46,7 +46,7 @@ class DatabaseInitStage extends React.Component {
 	render() {
 
 		return(
-
+			<Typography>чет типо того</Typography>
 		);
 	}
 }
