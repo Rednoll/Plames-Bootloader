@@ -49,15 +49,15 @@ class Config extends React.Component {
 		return (
 
 			<ThemeProvider theme={mainTheme}>
-			<div style={{display: "flex", flexDirection: "column"}}>
+			<div style={{display: "flex", flexDirection: "column", boxSizing: "border-box", height:"100%", padding: "15px"}}>
 
-				<div style={{flexGrow: "3.5"}}>
+				<div style={{display: "flex", justifyContent: "center", alignItems: "center", flexGrow: "3.5"}}>
 
 					{steps[this.state.activeStep].ui()}
 
 				</div>
 
-				<div style={{position: "relative", height: "40", flexBasis: "80px", flexShrink: "0.0000001"}}>
+				<div style={{position: "relative", flexBasis: "80px", flexShrink: "0.0000001"}}>
 				<Stepper alternativeLabel nonLinear activeStep={this.state.activeStep}>
 
 				{steps.map((step, index)=> {

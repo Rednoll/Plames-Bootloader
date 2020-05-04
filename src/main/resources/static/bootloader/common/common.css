@@ -73,3 +73,8 @@
 	position: relative;
 	border: 0px solid lightgrey;
 }
+
+#react-body {
+
+	padding: 0px;
+}
