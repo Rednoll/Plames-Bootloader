@@ -47,8 +47,6 @@ class Config extends React.Component {
 
 			activeStep: 0
 		};
-
-		steps.map((step, index)=> step.props.index = index);
 	}
 
 	render() {
@@ -61,12 +59,12 @@ class Config extends React.Component {
 
 				<Stepper alternativeLabel nonLinear activeStep={this.state.activeStep}>
 
-				{steps.map((step)=> {
+				{steps.map((step, index)=> {
 
 					return (
 						
 						<Step key={step.getName()}>
-                        	<StepLabel completed={this.state.activeStep > step.props.index}>{step.getName()}</StepLabel>
+                        	<StepLabel completed={this.state.activeStep > index}>{step.getName()}</StepLabel>
                         </Step>
 					);
 				})}
