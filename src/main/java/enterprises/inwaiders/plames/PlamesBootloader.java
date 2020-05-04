@@ -127,6 +127,8 @@ public class PlamesBootloader {
 		if(!validateResult) {
 			
 			CONFIGURATION_REQUIRED = true;
+			
+			System.out.println("Please configure Plames on */bootloader/config page.");
 			return;
 		}
 		
