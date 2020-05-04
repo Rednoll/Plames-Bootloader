@@ -20,6 +20,11 @@ let steps = [
 
 class ProductKeyStage extends React.Component {
 
+	constructor(props) {
+		super(props);
+
+	}
+
 	redner() {
 
 		return (
@@ -43,7 +48,7 @@ class Config extends React.Component {
 			activeStep: 0
 		};
 
-		steps.map((step, index)=> step.index = index);
+		steps.map((step, index)=> step.props.index = index);
 	}
 
 	render() {
@@ -61,7 +66,7 @@ class Config extends React.Component {
 					return (
 						
 						<Step key={step.getName()}>
-                        	<StepLabel completed={this.state.activeStep > step.index}>{step.getName()}</StepLabel>
+                        	<StepLabel completed={this.state.activeStep > step.props.index}>{step.getName()}</StepLabel>
                         </Step>
 					);
 				})}
