@@ -25,7 +25,7 @@ class ProductKeyStage extends React.Component {
 
 	}
 
-	redner() {
+	render() {
 
 		return (
 			<Typography>чет типо того</Typography>
