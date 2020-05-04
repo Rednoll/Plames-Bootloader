@@ -48,6 +48,7 @@ class Config extends React.Component {
 
 		return (
 
+			<ThemeProvider theme={mainTheme}>
 			<div style={{display: "flex", flexDirection: "column"}}>
 
 				{steps[this.state.activeStep].ui()}
@@ -67,6 +68,7 @@ class Config extends React.Component {
 				</Stepper>
 
 			</div>
+			</ThemeProvider>
 		);
 	}
 }

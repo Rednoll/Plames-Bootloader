@@ -49,3 +49,27 @@
 	color: silver;
 	margin: 0px;
 }
+
+.site-module-container {
+
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	padding: 15px;
+}
+
+.site-module-container.horizontal {
+
+	display: flex;
+	flex-direction: row;
+}
+
+.site-module-container.vertical {
+
+	display: flex;
+	flex-direction: column;
+}
+
+.site-module-container > .sub-module-container {
+
+	position: relative;
+	border: 0px solid lightgrey;
+}
