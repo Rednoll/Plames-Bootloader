@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -72,11 +73,14 @@ public class PlamesBootloader {
 	
 	public static Properties MAIN_PROPS = null;
 	
-	public static boolean CONFIGURATION_REQUIRED = false; 
+	public static ApplicationContext CONTEXT = null;
+	
+	public static Environment ENV = null;
 	
 	public static void main(String[] args) {
 		
-		SpringApplication.run(PlamesBootloader.class, args);
+		CONTEXT = SpringApplication.run(PlamesBootloader.class, args);
+		ENV = CONTEXT.getEnvironment();
 		
 		bootload(Arrays.asList(args));
 	}
@@ -122,11 +126,7 @@ public class PlamesBootloader {
 			}
 		}
 		
-		boolean validateResult = validateMainProps(MAIN_PROPS);
-		
-		if(!validateResult) {
-			
-			CONFIGURATION_REQUIRED = true;
+		if(Arrays.asList(ENV.getActiveProfiles()).contains("init")) {
 			
 			System.out.println("Please configure Plames on */bootloader/config page.");
 			return;
@@ -151,23 +151,21 @@ public class PlamesBootloader {
 	
 	public static Stage getDefaultBootSequence() {
 		
-		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
-		
 		Stage result = StageBase.EMPTY;
 		
-		result = (Stage) context.getBean(CorePostInitStage.class, result);
+		result = (Stage) CONTEXT.getBean(CorePostInitStage.class, result);
 		
-		result = (Stage) context.getBean(PostInitStage.class, result);
+		result = (Stage) CONTEXT.getBean(PostInitStage.class, result);
 		
-		result = (Stage) context.getBean(InitStage.class, result);
+		result = (Stage) CONTEXT.getBean(InitStage.class, result);
 		
-		result = (Stage) context.getBean(CoreInitStage.class, result);
+		result = (Stage) CONTEXT.getBean(CoreInitStage.class, result);
 		
-		result = (Stage) context.getBean(PreInitStage.class, result);
+		result = (Stage) CONTEXT.getBean(PreInitStage.class, result);
 		
 		result = new ApplicationRegistrationStage(result);
 		
-		result = (Stage) context.getBean(CorePreInitStage.class, result);
+		result = (Stage) CONTEXT.getBean(CorePreInitStage.class, result);
 		
 		result = new CoreSearchStage(result);
 		
