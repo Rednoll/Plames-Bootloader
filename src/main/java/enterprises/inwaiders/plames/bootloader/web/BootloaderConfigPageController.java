@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import enterprises.inwaiders.plames.bootloader.utils.DatabaseTypesRegistry;
 
 @Controller
-@RequestMapping("/bootloader")
+@RequestMapping("/bootloader/config")
 public class BootloaderConfigPageController {
 
-	@GetMapping("/config")
+	@GetMapping("")
 	public String mainPage(Model model) {
 		
 		return "config";
@@ -29,7 +29,7 @@ public class BootloaderConfigPageController {
 		return ResponseEntity.ok().body(true);
 	}
 	
-	@GetMapping("/db_typee")
+	@GetMapping("/db_type")
 	public List<String> verifyProductKey() {
 	
 		//TODO
