@@ -41,7 +41,8 @@ public class BootloaderConfigRest {
 			props.setProperty("spring.datasource.jdbcUrl", url);
 			props.setProperty("spring.datasource.platform", platform);
 			props.setProperty("spring.jpa.database-platform", DatabasePlatformsRegistry.findByName(platform).getDriverClass());
-			
+		
+		PlamesBootloader.saveProdApplicationProps();
 		
 		return ResponseEntity.ok().body(true);
 	}
