@@ -6,6 +6,7 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import { withStyles, ThemeProvider } from "@material-ui/core/styles";
 
 import styles from "./jss_styles.js";
@@ -74,7 +75,8 @@ class ProductKeyStage extends React.Component {
 
 		this.state = {
 
-			productKey: ""
+			helperText: "",
+			productKeyValid: true
 		}
 	
 		this.onClick = this.onClick.bind(this);
@@ -84,7 +86,7 @@ class ProductKeyStage extends React.Component {
 
 		$.ajax({
 
-			url: "../bootloader/config/verify?productKey="+this.state.productKey,
+			url: "../bootloader/config/verify?productKey="+$("#product-key-field").val(),
 			method: "GET",
 			success: (good)=> {
 
@@ -99,11 +101,18 @@ class ProductKeyStage extends React.Component {
 	render() {
 
 		return (
+
 			<div style={{display: "flex", justifyContent: "center", alignItems: "center", boxSizing: "border-box", position: "relative", height: "100%", width: "100%"}}>
 				
-				<Typography>чет типо того</Typography>
+				<div>
 				
-				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "10px", right: "10px"}}>NEXT</button>
+					<Typography color="primary">Please enter your product key</Typography>
+					<div style={{height: "10px"}}></div>
+					<TextField fullWidth id="product-key-field" error={!this.state.productKeyValid} helperText={this.state.helperText} label="Product key" />
+
+				</div>
+
+				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "15px", right: "10px"}}>NEXT</button>
 
 			</div>
 		);
