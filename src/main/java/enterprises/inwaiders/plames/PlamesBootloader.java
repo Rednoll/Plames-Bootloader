@@ -95,7 +95,13 @@ public class PlamesBootloader {
 			
 				listArgs.add("-Dspring.profiles.active=prod");
 				
-				System.out.println("OK!");
+				String[] array = listArgs.toArray(new String[0]);
+				
+				for(String arg : array) {
+					
+					System.out.println("arg: "+arg);
+				}
+				
 			}
 			catch(FileNotFoundException e) {
 				
@@ -107,7 +113,7 @@ public class PlamesBootloader {
 			}
 		}
 		
-		CONTEXT = SpringApplication.run(PlamesBootloader.class, listArgs.toArray(new String[listArgs.size()]));
+		CONTEXT = SpringApplication.run(PlamesBootloader.class, listArgs.toArray(new String[0]));
 		ENV = CONTEXT.getEnvironment();
 		
 		bootload(listArgs);
