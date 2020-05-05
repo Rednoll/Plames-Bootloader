@@ -134,7 +134,7 @@ class Config extends React.Component {
 
 				</div>
 
-				<div style={{position: "relative", flexBasis: "80px", flexShrink: "0.0000001"}}>
+				<div style={{position: "relative", flexBasis: "80px", flexShrink: "0.0000001", borderTop: "1px solid lightgrey"}}>
 				<Stepper alternativeLabel nonLinear activeStep={this.state.activeStep}>
 
 				{steps.map((step, index)=> {
