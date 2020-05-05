@@ -149,10 +149,15 @@ class DatabaseInitStage extends React.Component {
 
 					</Select>
 					</FormControl>
-					<div style={{height: "15px"}}></div>
 
+				</div>
+
+				<div style={{height: "15px"}}></div>
+				
+				<div style={{width: "50%"}}>
+					
 					<Typography fullWidth align="center" color="textError">{this.state.mainErrorText}</Typography>
-
+				
 				</div>
 
 				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "15px", right: "10px"}}>NEXT</button>
