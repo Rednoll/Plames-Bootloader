@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles, ThemeProvider } from "@material-ui/core/styles";
 
 import styles from "./jss_styles.js";
@@ -99,6 +100,7 @@ class DatabaseInitStage extends React.Component {
 					<TextField fullWidth id="db-url-field" error={!this.state.urlValid} helperText={this.state.urlHelperText} label="Database url" />
 					<div style={{height: "15px"}}></div>
 
+					<FormControl className={classes.formControl}>
 					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
 
 					<Select labelWidth="100%" id="db-type-select" labelId="db-type-label">
@@ -106,6 +108,7 @@ class DatabaseInitStage extends React.Component {
 						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
 
 					</Select>
+					</FormControl>
 
 				</div>
 
