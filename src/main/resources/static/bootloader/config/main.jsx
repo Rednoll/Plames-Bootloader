@@ -77,13 +77,13 @@ class DatabaseInitStage extends React.Component {
 			urlHelperText: ""
 		};
 
-		this.databaseTypes = [];
+		this.databasePlatforms = [];
 
 		let me = this;
 
-		$.get("../bootloader/config/db/types", (data)=> {
+		$.get("../bootloader/config/db/platforms", (data)=> {
 
-			me.databaseTypes = data;
+			me.databasePlatforms = data;
 			me.setState({});
 		});
 
@@ -103,7 +103,14 @@ class DatabaseInitStage extends React.Component {
 				username: $("#db-username-field").val(),
 				password: $("#db-password-field").val(),
 				url: $("#db-url-field").val(),
-				type: $("#db-type-field").val()
+				platform: $("#db-platform-field").val()
+			},
+			success: (good)=> {
+
+				if(good) {
+
+					goToNextStep();
+				}
 			}
 		});
 	}
@@ -126,11 +133,11 @@ class DatabaseInitStage extends React.Component {
 					<div style={{height: "15px"}}></div>
 
 					<FormControl className={classes.formControl}>
-					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
+					<InputLabel id="db-platform-label" color="primary">Database platform</InputLabel>
 
-					<Select inputProps={{ id: "db-type-field" }} labelWidth="100%" id="db-type-select" labelId="db-type-label">
+					<Select inputProps={{ id: "db-platform-field" }} labelWidth="100%" id="db-platform-select" labelId="db-platform-label">
 
-						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
+						{this.databasePlatforms.map((platform) => <MenuItem value={platform}>{platform}</MenuItem>)}
 
 					</Select>
 					</FormControl>
