@@ -21,7 +21,7 @@ let steps = [
 
 ];
 
-let configRef = null;
+let configRef = React.createRef();
 
 const goToNextStep = ()=> {
 
@@ -99,11 +99,11 @@ class ProductKeyStage extends React.Component {
 	render() {
 
 		return (
-			<div style={{boxSizing: "border-box", position: "relative", height: "100%", width: "100%"}}>
+			<div style={{display: "flex", justifyContent: "center", alignItems: "center", boxSizing: "border-box", position: "relative", height: "100%", width: "100%"}}>
 				
 				<Typography>чет типо того</Typography>
 				
-				<button className="accent-button" onClick={this.onClick} style={{position: "absolure", bottom: "10px", right: "10px"}}>NEXT</button>
+				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "10px", right: "10px"}}>NEXT</button>
 
 			</div>
 		);
@@ -119,8 +119,6 @@ class Config extends React.Component {
 
 			activeStep: 0
 		};
-
-		configRef = React.createRef();
 	}
 
 	render() {
@@ -128,7 +126,7 @@ class Config extends React.Component {
 		return (
 
 			<ThemeProvider theme={mainTheme}>
-			<div ref={configRef} style={{display: "flex", flexDirection: "column", boxSizing: "border-box", height:"100%", padding: "15px"}}>
+			<div style={{display: "flex", flexDirection: "column", boxSizing: "border-box", height:"100%", padding: "15px"}}>
 
 				<div style={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center", flexGrow: "3.5"}}>
 
@@ -162,6 +160,6 @@ class Config extends React.Component {
 
 const StyledConfig = withStyles(styles)(Config);
 
-ReactDOM.render(<StyledConfig />, document.querySelector("#react-body"));
+ReactDOM.render(<StyledConfig ref={configRef} />, document.querySelector("#react-body"));
 
 new ClipboardJS(".btn");
