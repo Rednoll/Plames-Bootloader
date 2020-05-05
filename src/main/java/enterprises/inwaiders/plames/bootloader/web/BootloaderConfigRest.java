@@ -30,19 +30,11 @@ public class BootloaderConfigRest {
 	}
 	
 	@PostMapping("/db/data")
-	public ResponseEntity<Boolean> dbData(DatabaseData data) {
+	public ResponseEntity<Boolean> dbData(DatabaseDataForm data) {
 		
 		System.out.println("username: "+data.username);
 		System.out.println("type: "+data.type);
 		
 		return ResponseEntity.ok().body(true);
-	}
-	
-	public static class DatabaseData {
-		
-		public String username;
-		public String password;
-		public String url;
-		public String type;
 	}
 }
