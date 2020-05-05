@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +22,18 @@ public class BootloaderConfigRest {
 		return ResponseEntity.ok().body(true);
 	}
 	
-	@GetMapping("/db_types")
-	public List<String> verifyProductKey() {
+	@GetMapping("/db/types")
+	public List<String> dbType() {
 	
 		//TODO
 		return DatabaseTypesRegistry.getTypes().stream().map(type -> type.getName()).collect(Collectors.toList()); 
+	}
+	
+	@PostMapping("/db/data")
+	public ResponseEntity<Boolean> dbData(String username, String password, String url, String type) {
+		
+		System.out.println("username: "+username);
+		
+		return ResponseEntity.ok().body(true);
 	}
 }

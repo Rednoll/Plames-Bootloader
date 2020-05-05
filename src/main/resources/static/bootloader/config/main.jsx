@@ -49,12 +49,55 @@ class RootUserInitStage extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.onClick = this.onClick.bind(this);
+	}
+
+	onClick() {
+
+		$.ajax({
+
+			url: "../bootloader/config/db/data",
+			method: "POST",
+			data: JSON.stringify({
+
+				username: $("db-username-field").val(),
+				password: $("db-password-field").val(),
+				url: $("db-url-field").val(),
+				type: $("db-type-select").val()
+			})
+		});
 	}
 
 	render() {
 
 		return(
-			<Typography>чет типо того</Typography>
+
+			<div class="config-stage-container">
+				
+				<div style={{width: "35%"}}>
+
+					<TextField fullWidth id="db-username-field" error={!this.state.usernameValid} helperText={this.state.usernameHelperText} label="Username" />
+					<div style={{height: "15px"}}></div>
+					<TextField fullWidth id="db-password-field" error={!this.state.passwordValid} helperText={this.state.passwordHelperText} label="Password" />
+					<div style={{height: "15px"}}></div>
+					<TextField fullWidth id="db-url-field" error={!this.state.urlValid} helperText={this.state.urlHelperText} label="Database url" />
+					<div style={{height: "15px"}}></div>
+
+					<FormControl className={classes.formControl}>
+					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
+
+					<Select labelWidth="100%" id="db-type-select" labelId="db-type-label">
+
+						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
+
+					</Select>
+					</FormControl>
+
+				</div>
+
+				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "15px", right: "10px"}}>NEXT</button>
+
+			</div>
 		);
 	}
 }
@@ -78,7 +121,7 @@ class DatabaseInitStage extends React.Component {
 
 		let me = this;
 
-		$.get("../bootloader/config/db_types", (data)=> {
+		$.get("../bootloader/config/db/types", (data)=> {
 
 			me.databaseTypes = data;
 			me.setState({});
