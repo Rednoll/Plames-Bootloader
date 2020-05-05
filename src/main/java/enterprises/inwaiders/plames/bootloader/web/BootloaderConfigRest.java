@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,13 +15,13 @@ import enterprises.inwaiders.plames.bootloader.utils.DatabaseTypesRegistry;
 public class BootloaderConfigRest {
 
 	@GetMapping("/verify")
-	public ResponseEntity<Boolean> verifyProductKey(@PathVariable String productKey) {
+	public ResponseEntity<Boolean> verifyProductKey(String productKey) {
 	
 		//TODO
 		return ResponseEntity.ok().body(true);
 	}
 	
-	@GetMapping("/db_type")
+	@GetMapping("/db_types")
 	public List<String> verifyProductKey() {
 	
 		//TODO
