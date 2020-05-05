@@ -98,10 +98,10 @@ class DatabaseInitStage extends React.Component {
 			method: "POST",
 			data: JSON.stringify({
 
-				username: $("db-username-field").val(),
-				password: $("db-password-field").val(),
-				url: $("db-url-field").val(),
-				type: $("db-type-select").val()
+				username: $("#db-username-field").val(),
+				password: $("#db-password-field").val(),
+				url: $("#db-url-field").val(),
+				type: $("#db-type-select").val()
 			})
 		});
 	}
