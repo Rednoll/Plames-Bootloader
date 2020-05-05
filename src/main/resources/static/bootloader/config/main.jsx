@@ -7,12 +7,16 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import { withStyles, ThemeProvider } from "@material-ui/core/styles";
 
 import styles from "./jss_styles.js";
 import mainTheme from "../common/jss_styles.jsx";
 
 import ClipboardJS from "clipboard";
+
+import "./main.css";
 
 let steps = [
 	
