@@ -21,6 +21,22 @@ let steps = [
 
 ];
 
+let configRef = null;
+
+const goToNextStep = ()=> {
+
+	let config = configRef.current;
+
+	if(config.state.activeStep+1 != steps.length) {
+	
+		config.setState({activeStep: (config.state.activeStep+1)});
+	}
+	else {
+
+		//TODO
+	}
+};
+
 class RootUserInitStage extends React.Component {
 
 	constructor(props) {
@@ -56,12 +72,40 @@ class ProductKeyStage extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+
+			productKey: ""
+		}
+	
+		this.onClick = this.onClick.bind(this);
+	}
+
+	onClick() {
+
+		$.ajax({
+
+			url: "../bootloader/config/verify?productKey="+this.state.productKey,
+			method: "GET",
+			success: (good)=> {
+
+				if(good) {
+
+					goToNextStep();
+				}
+			}
+		});
 	}
 
 	render() {
 
 		return (
-			<Typography>чет типо того</Typography>
+			<div style={{boxSizing: "border-box", position: "relative", height: "100%", width: "100%"}}>
+				
+				<Typography>чет типо того</Typography>
+				
+				<button className="accent-button" onClick={this.onClick} style={{position: "absolure", bottom: "10px", right: "10px"}}>NEXT</button>
+
+			</div>
 		);
 	}
 }
@@ -75,6 +119,8 @@ class Config extends React.Component {
 
 			activeStep: 0
 		};
+
+		configRef = React.createRef();
 	}
 
 	render() {
@@ -82,9 +128,9 @@ class Config extends React.Component {
 		return (
 
 			<ThemeProvider theme={mainTheme}>
-			<div style={{display: "flex", flexDirection: "column", boxSizing: "border-box", height:"100%", padding: "15px"}}>
+			<div ref={configRef} style={{display: "flex", flexDirection: "column", boxSizing: "border-box", height:"100%", padding: "15px"}}>
 
-				<div style={{display: "flex", justifyContent: "center", alignItems: "center", flexGrow: "3.5"}}>
+				<div style={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center", flexGrow: "3.5"}}>
 
 					{steps[this.state.activeStep].ui()}
 

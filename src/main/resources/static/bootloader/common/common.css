@@ -78,3 +78,30 @@
 
 	padding: 0px;
 }
+
+.accent-button {
+
+	font-family: "Metropolis", Arial, sans-serif;
+	font-size: 18;
+	font-weight: 550;
+	color: white;
+	letter-spacing: 0.125em;
+
+	background-color: #BAE1FF;
+	outline-width: 0;
+	border: 4px solid #9EBFD8;
+
+	padding: 7px 12px 5px 12px;
+
+	transition-duration: 0.3s;
+}
+
+.accent-button:hover {
+
+	color: white;
+	background-color: #B0D5F2;
+	border-color: #95B3C9;
+	cursor: pointer; 
+
+	transition-duration: 0.3s;
+}
