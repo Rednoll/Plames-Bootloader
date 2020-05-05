@@ -107,8 +107,8 @@ class DatabaseInitStage extends React.Component {
 				url: $("#db-url-field").val(),
 				platform: $("#db-platform-field").val()
 			}
-			
-		}).done((valid)=> {
+
+		}).always((valid)=> {
 
 			if(valid) {
 
@@ -149,7 +149,8 @@ class DatabaseInitStage extends React.Component {
 
 					</Select>
 					</FormControl>
-
+					<div style={{height: "15px"}}></div>
+					
 					<Typography fullWidth align="center" color="textPrimary">{this.state.mainErrorText}</Typography>
 
 				</div>
