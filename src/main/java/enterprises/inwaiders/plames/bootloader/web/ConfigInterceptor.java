@@ -9,18 +9,9 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-		if(request.getRequestURI().startsWith("/resources")) return true;
 		
-		System.out.println("req: "+request.getRequestURI());
+		response.sendRedirect("/bootloader/config");
 		
-		if(!request.getRequestURI().startsWith("/bootloader/config")) {
-			
-			response.sendRedirect("/bootloader/config");
-		
-			return false;
-		}
-	
-		return true;
+		return false;
 	}
 }

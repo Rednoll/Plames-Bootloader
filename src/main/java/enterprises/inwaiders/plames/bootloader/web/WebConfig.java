@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
 		
 		if(Arrays.asList(env.getActiveProfiles()).contains("init")) {
 			
-			registry.addInterceptor(new ConfigInterceptor());
+			registry.addInterceptor(new ConfigInterceptor()).addPathPatterns("/**").excludePathPatterns("/resources/**", "/bootloader/config/**");
 		}
 	}
 }
