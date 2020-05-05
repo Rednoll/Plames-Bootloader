@@ -73,7 +73,7 @@ class DatabaseInitStage extends React.Component {
 
 		let me = this;
 
-		$.get("../bootloader/config/db_types", (data)=> {
+		$.get("/bootloader/config/db_types", (data)=> {
 
 			this.databaseTypes = data;
 		});
@@ -129,7 +129,7 @@ class ProductKeyStage extends React.Component {
 
 		$.ajax({
 
-			url: "../bootloader/config/verify?productKey="+$("#product-key-field").val(),
+			url: "/bootloader/config/verify?productKey="+$("#product-key-field").val(),
 			method: "GET",
 			success: (good)=> {
 
