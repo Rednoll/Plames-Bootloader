@@ -105,7 +105,7 @@ public class PlamesBootloader {
 			}
 		}
 		
-		CONTEXT = SpringApplication.run(PlamesBootloader.class, args);
+		CONTEXT = SpringApplication.run(PlamesBootloader.class, (String[]) listArgs.toArray());
 		ENV = CONTEXT.getEnvironment();
 		
 		bootload(listArgs);
