@@ -167,7 +167,7 @@ public class PlamesBootloader {
 	
 	private static boolean validateMainProps(Properties props) {
 		
-		if(!props.containsKey("product_key")) {
+		if(!props.containsKey("plames.product_key")) {
 			
 			return false;
 		}
@@ -224,9 +224,32 @@ public class PlamesBootloader {
 		}
 	}
 	
+	public static void saveMainProps() {
+		
+		File propertiesFile = new File(DATA_FOLDER, "main.properties");
+		
+		try {
+			
+			if(!propertiesFile.exists()) {
+				
+				propertiesFile.createNewFile();
+			}
+			
+			MAIN_PROPS.store(new FileOutputStream(propertiesFile), "");
+		}
+		catch(FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		catch(IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
 	public static void saveProdApplicationProps() {
 		
-		File prodApplicationPropsFile = new File("/config/application-prod.properties");
+		File prodApplicationPropsFile = new File("./config", "application-prod.properties");
 		
 		try {
 			

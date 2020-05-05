@@ -19,8 +19,13 @@ public class BootloaderConfigRest {
 
 	@GetMapping("/verify")
 	public ResponseEntity<Boolean> verifyProductKey(String productKey) {
-	
+		
 		//TODO
+		Properties props = PlamesBootloader.MAIN_PROPS;
+			props.setProperty("plames.product_key", productKey);
+		
+		PlamesBootloader.saveMainProps();
+		
 		return ResponseEntity.ok().body(true);
 	}
 	
