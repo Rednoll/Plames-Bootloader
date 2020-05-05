@@ -33,6 +33,7 @@ public class BootloaderConfigRest {
 	public ResponseEntity<Boolean> dbData(String username, String password, String url, String type) {
 		
 		System.out.println("username: "+username);
+		System.out.println("type: "+type);
 		
 		return ResponseEntity.ok().body(true);
 	}
