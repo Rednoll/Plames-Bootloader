@@ -12,6 +12,8 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
 
 		if(request.getRequestURI().startsWith("/resources")) return true;
 		
+		System.out.println("req: "+request.getRequestURI());
+		
 		if(!request.getRequestURI().startsWith("/bootloader/config")) {
 			
 			response.sendRedirect("/bootloader/config");

@@ -94,7 +94,7 @@ class DatabaseInitStage extends React.Component {
 					<TextField fullWidth id="db-url-field" error={!this.state.urlValid} helperText={this.state.urlHelperText} label="Database url" />
 					<div style={{height: "10px"}}></div>
 
-					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
+					<InputLabel fullWidth id="db-type-label" color="primary">Database type</InputLabel>
 
 					<Select id="db-type-select" labelId="db-type-label">
 
