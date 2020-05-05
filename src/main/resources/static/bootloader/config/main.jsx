@@ -66,7 +66,7 @@ class DatabaseInitStage extends React.Component {
 		this.state = {
 
 			usernameValid: true,
-			usernameHelperText: "",
+			usernameHelperText: ""
 		};
 
 		this.databaseTypes = [];
@@ -75,7 +75,8 @@ class DatabaseInitStage extends React.Component {
 
 		$.get("../bootloader/config/db_types", (data)=> {
 
-			this.databaseTypes = data;
+			me.databaseTypes = data;
+			me.setState({});
 		});
 	}
 
