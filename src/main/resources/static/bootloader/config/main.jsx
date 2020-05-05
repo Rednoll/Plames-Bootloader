@@ -69,6 +69,8 @@ class DatabaseInitStage extends React.Component {
 
 		this.state = {
 
+			dbType: "",
+
 			usernameValid: true,
 			usernameHelperText: "",
 			passwordValid: true,
@@ -92,17 +94,19 @@ class DatabaseInitStage extends React.Component {
 
 	onClick() {
 
+		let me = this;
+
 		$.ajax({
 
 			url: "../bootloader/config/db/data",
 			method: "POST",
-			data: JSON.stringify({
+			data: {
 
 				username: $("#db-username-field").val(),
 				password: $("#db-password-field").val(),
 				url: $("#db-url-field").val(),
-				type: $("#db-type-select").val()
-			})
+				type: me.state.dbType
+			}
 		});
 	}
 
@@ -126,7 +130,7 @@ class DatabaseInitStage extends React.Component {
 					<FormControl className={classes.formControl}>
 					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
 
-					<Select labelWidth="100%" id="db-type-select" labelId="db-type-label">
+					<Select onChange={(trash, trash, value)=> {this.setState({dbType: value})}} labelWidth="100%" id="db-type-select" labelId="db-type-label">
 
 						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
 
