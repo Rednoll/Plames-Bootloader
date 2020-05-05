@@ -129,7 +129,7 @@ class DatabaseInitStage extends React.Component {
 
 		return(
 
-			<div class="config-stage-container">
+			<div class="config-stage-container" style={{flexDirection: "column"}}>
 				
 				<div style={{width: "35%"}}>
 
@@ -156,7 +156,7 @@ class DatabaseInitStage extends React.Component {
 				
 				<div style={{width: "50%"}}>
 					
-					<Typography fullWidth align="center" color="textError">{this.state.mainErrorText}</Typography>
+					<Typography fullWidth align="center" color="textSecond">{this.state.mainErrorText}</Typography>
 				
 				</div>
 
