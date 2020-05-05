@@ -106,19 +106,18 @@ class DatabaseInitStage extends React.Component {
 				password: $("#db-password-field").val(),
 				url: $("#db-url-field").val(),
 				platform: $("#db-platform-field").val()
-			},
-			success: (valid)=> {
+			}
+		}).done((valid)=> {
 
-				if(valid) {
-					
-					this.setState({mainErrorText: ""});
+			if(valid) {
 
-					goToNextStep();
-				}
-				else {
+				this.setState({mainErrorText: ""});
 
-					this.setState({mainErrorText: "Can't use database! Please check data, also database settings!"});
-				}
+				goToNextStep();
+			}
+			else {
+
+				this.setState({mainErrorText: "Can't use database! Please check data, also database settings!"});
 			}
 		});
 	}
