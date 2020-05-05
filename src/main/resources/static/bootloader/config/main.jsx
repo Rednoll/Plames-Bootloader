@@ -87,7 +87,7 @@ class DatabaseInitStage extends React.Component {
 
 	render() {
 
-		const {classes} = this.props;
+		const { classes } = this.props;
 
 		return(
 
@@ -120,6 +120,8 @@ class DatabaseInitStage extends React.Component {
 		);
 	}
 }
+
+DatabaseInitStage = withStyles(styles)(DatabaseInitStage);
 
 class ProductKeyStage extends React.Component {
 
