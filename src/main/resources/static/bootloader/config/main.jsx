@@ -130,7 +130,7 @@ class DatabaseInitStage extends React.Component {
 					<FormControl className={classes.formControl}>
 					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
 
-					<Select onChange={(trash, trash, value)=> {this.setState({dbType: value})}} labelWidth="100%" id="db-type-select" labelId="db-type-label">
+					<Select onChange={(trash, trash2, value)=> {this.setState({dbType: value})}} labelWidth="100%" id="db-type-select" labelId="db-type-label">
 
 						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
 
