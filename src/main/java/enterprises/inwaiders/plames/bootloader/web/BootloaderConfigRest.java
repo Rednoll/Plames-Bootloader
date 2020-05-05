@@ -58,7 +58,7 @@ public class BootloaderConfigRest {
 		}
 		else {
 			
-			return new ResponseEntity<Boolean>(false, HttpStatus.I_AM_A_TEAPOT);
+			return ResponseEntity.badRequest().body(false);
 		}
 	}
 }

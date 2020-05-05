@@ -107,6 +107,7 @@ class DatabaseInitStage extends React.Component {
 				url: $("#db-url-field").val(),
 				platform: $("#db-platform-field").val()
 			}
+			
 		}).done((valid)=> {
 
 			if(valid) {
