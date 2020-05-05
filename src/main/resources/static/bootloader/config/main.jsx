@@ -151,7 +151,7 @@ class DatabaseInitStage extends React.Component {
 					</FormControl>
 					<div style={{height: "15px"}}></div>
 
-					<Typography fullWidth align="center" color="textPrimary">{this.state.mainErrorText}</Typography>
+					<Typography fullWidth align="center" color="textError">{this.state.mainErrorText}</Typography>
 
 				</div>
 

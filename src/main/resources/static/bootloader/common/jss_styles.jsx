@@ -8,7 +8,8 @@ const mainTheme = createMuiTheme({
 		error: { main: "#FF1E45", contrastText: "white" },
 		text: {
 
-			primary: "#6D8593"
+			primary: "#6D8593",
+			error: "#E12327"
 		}
 	}
 });
