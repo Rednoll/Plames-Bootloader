@@ -230,6 +230,11 @@ public class PlamesBootloader {
 		
 		try {
 			
+			if(!prodApplicationPropsFile.exists()) {
+				
+				prodApplicationPropsFile.createNewFile();
+			}
+			
 			PROD_APPLICATON_PROPS.store(new FileOutputStream(prodApplicationPropsFile), "");
 		}
 		catch(FileNotFoundException e) {
