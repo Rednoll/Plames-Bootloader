@@ -1,5 +1,7 @@
 package enterprises.inwaiders.plames.bootloader.web;
 
+import java.util.Arrays;
+
 import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -24,6 +27,15 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     	registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
     	registry.addResourceHandler("/data/**").addResourceLocations("file:data/");
     }
+    
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		
+		if(Arrays.asList(env.getActiveProfiles()).contains("init")) {
+			
+			registry.addInterceptor(new ConfigInterceptor()).addPathPatterns("/**").excludePathPatterns("/resources/**", "/bootloader/config/**");
+		}
+	}
     
 	@Bean
 	public ServletWebServerFactory servletContainer() {
