@@ -104,9 +104,9 @@ class ProductKeyStage extends React.Component {
 
 			<div style={{display: "flex", justifyContent: "center", alignItems: "center", boxSizing: "border-box", position: "relative", height: "100%", width: "100%"}}>
 				
-				<div>
+				<div style={{maxWidth: "50%", width: "max-content"}}>
 				
-					<Typography color="primary">Please enter your product key</Typography>
+					<Typography fullWidth align="center" color="textPrimary">Please enter your product key</Typography>
 					<div style={{height: "10px"}}></div>
 					<TextField fullWidth id="product-key-field" error={!this.state.productKeyValid} helperText={this.state.helperText} label="Product key" />
 
