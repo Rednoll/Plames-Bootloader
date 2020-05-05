@@ -93,15 +93,7 @@ public class PlamesBootloader {
 				
 				PROD_APPLICATON_PROPS.load(new FileInputStream(prodApplicationPropsFile));
 			
-				listArgs.add("-Dspring.profiles.active=prod");
-				
-				String[] array = listArgs.toArray(new String[0]);
-				
-				for(String arg : array) {
-					
-					System.out.println("arg: "+arg);
-				}
-				
+				listArgs.add("--spring.profiles.active=prod");
 			}
 			catch(FileNotFoundException e) {
 				
