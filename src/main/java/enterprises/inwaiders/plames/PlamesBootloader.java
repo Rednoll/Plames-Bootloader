@@ -85,7 +85,7 @@ public class PlamesBootloader {
 
 		List<String> listArgs = new ArrayList<>(Arrays.asList(args));
 	
-		File prodApplicationPropsFile = new File("/config/application-prod.properties");
+		File prodApplicationPropsFile = new File("./config/application-prod.properties");
 		
 		if(prodApplicationPropsFile.exists()) {
 			
@@ -126,10 +126,14 @@ public class PlamesBootloader {
 		System.out.println();
 		System.out.println("==========================================================================");
 		
-		
 		if(args.contains("--DataFolder: ")) {
 			
 			DATA_FOLDER = new File(args.get(args.indexOf("--DataFolder")+1));
+		}
+		
+		if(!DATA_FOLDER.exists()) {
+			
+			DATA_FOLDER.mkdirs();
 		}
 		
 		File propertiesFile = new File(DATA_FOLDER, "main.properties");
