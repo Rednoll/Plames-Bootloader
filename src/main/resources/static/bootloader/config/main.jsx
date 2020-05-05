@@ -156,7 +156,7 @@ class DatabaseInitStage extends React.Component {
 				
 				<div style={{width: "50%"}}>
 					
-					<Typography fullWidth align="center" color="textSecond">{this.state.mainErrorText}</Typography>
+					<Typography fullWidth align="center" color="textSecondary">{this.state.mainErrorText}</Typography>
 				
 				</div>
 

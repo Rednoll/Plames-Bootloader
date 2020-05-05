@@ -9,7 +9,7 @@ const mainTheme = createMuiTheme({
 		text: {
 
 			primary: "#6D8593",
-			second: "#E12327"
+			secondary: "#E12327"
 		}
 	}
 });
