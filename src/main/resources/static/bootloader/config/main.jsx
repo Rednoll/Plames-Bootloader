@@ -74,7 +74,9 @@ class DatabaseInitStage extends React.Component {
 			passwordValid: true,
 			passwordHelperText: "",
 			urlValid: true,
-			urlHelperText: ""
+			urlHelperText: "",
+
+			mainErrorText: ""
 		};
 
 		this.databasePlatforms = [];
@@ -105,11 +107,17 @@ class DatabaseInitStage extends React.Component {
 				url: $("#db-url-field").val(),
 				platform: $("#db-platform-field").val()
 			},
-			success: (good)=> {
+			success: (valid)=> {
 
-				if(good) {
+				if(valid) {
+					
+					this.setState({mainErrorText: ""});
 
 					goToNextStep();
+				}
+				else {
+
+					this.setState({mainErrorText: "Can't use database! Please check data, also database settings!"});
 				}
 			}
 		});
@@ -141,6 +149,8 @@ class DatabaseInitStage extends React.Component {
 
 					</Select>
 					</FormControl>
+
+					<Typography fullWidth align="center" color="textPrimary">{this.state.mainErrorText}</Typography>
 
 				</div>
 

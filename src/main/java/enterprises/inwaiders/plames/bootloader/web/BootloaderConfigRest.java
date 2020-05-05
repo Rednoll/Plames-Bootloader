@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,8 +48,17 @@ public class BootloaderConfigRest {
 			props.setProperty("spring.datasource.platform", platform);
 			props.setProperty("spring.jpa.database-platform", DatabasePlatformsRegistry.findByName(platform).getDriverClass());
 		
-		PlamesBootloader.saveProdApplicationProps();
+		boolean valid = PlamesBootloader.validateDatabaseData();
 		
-		return ResponseEntity.ok().body(true);
+		if(valid) {
+			
+			PlamesBootloader.saveProdApplicationProps();
+		
+			return ResponseEntity.ok().body(true);
+		}
+		else {
+			
+			return new ResponseEntity<Boolean>(false, HttpStatus.I_AM_A_TEAPOT);
+		}
 	}
 }

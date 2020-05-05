@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -167,6 +170,40 @@ public class PlamesBootloader {
 		Stage startStage = getDefaultBootSequence();
 	
 		startStage.run(modules);
+	}
+	
+	public static boolean validateDatabaseData() {
+		
+		String url = PROD_APPLICATON_PROPS.getProperty("spring.datasource.url");
+		String user = PROD_APPLICATON_PROPS.getProperty("spring.datasource.username");
+		String pass = PROD_APPLICATON_PROPS.getProperty("spring.datasource.password");
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DriverManager.getConnection(url, user, pass);
+		}
+		catch(SQLException e) {
+			
+			e.printStackTrace();
+			
+			return false;
+		}
+		
+		try {
+			
+			conn.createStatement().execute("CREATE TABLE TEST (id INTEGER not NULL, PRIMARY KEY ( id ))");
+			conn.createStatement().execute("DROP TABLE TEST");
+		}
+		catch(SQLException e) {
+			
+			e.printStackTrace();
+			
+			return false;
+		}
+		
+		return true;
 	}
 	
 	private static boolean validateMainProps(Properties props) {
