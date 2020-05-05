@@ -3,7 +3,9 @@ package enterprises.inwaiders.plames;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -73,16 +75,40 @@ public class PlamesBootloader {
 	
 	public static Properties MAIN_PROPS = null;
 	
+	public static Properties PROD_APPLICATON_PROPS = new Properties();
+	
 	public static ApplicationContext CONTEXT = null;
 	
 	public static Environment ENV = null;
 	
 	public static void main(String[] args) {
+
+		List<String> listArgs = new ArrayList<>(Arrays.asList(args));
+	
+		File prodApplicationPropsFile = new File("/config/application-prod.properties");
+		
+		if(prodApplicationPropsFile.exists()) {
+			
+			try {
+				
+				PROD_APPLICATON_PROPS.load(new FileInputStream(prodApplicationPropsFile));
+			
+				listArgs.add("-Dspring.profiles.active=prod");
+			}
+			catch(FileNotFoundException e) {
+				
+				e.printStackTrace();
+			}
+			catch(IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
 		
 		CONTEXT = SpringApplication.run(PlamesBootloader.class, args);
 		ENV = CONTEXT.getEnvironment();
 		
-		bootload(Arrays.asList(args));
+		bootload(listArgs);
 	}
 	
 	public static void bootload(List<String> args) {
@@ -195,6 +221,24 @@ public class PlamesBootloader {
 		if(module.getStatus() == ModuleStatus.ACTIVE || module.getStatus() == ModuleStatus.AWAITING_ON) {
 			
 			module.setStatus(ModuleStatus.AWAITING_OFF);
+		}
+	}
+	
+	public static void saveProdApplicationProps() {
+		
+		File prodApplicationPropsFile = new File("/config/application-prod.properties");
+		
+		try {
+			
+			PROD_APPLICATON_PROPS.store(new FileOutputStream(prodApplicationPropsFile), "");
+		}
+		catch(FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		catch(IOException e) {
+			
+			e.printStackTrace();
 		}
 	}
 	

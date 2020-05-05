@@ -1,13 +1,13 @@
 package enterprises.inwaiders.plames.bootloader.utils;
 
-public class DatabaseType {
+public class DatabasePlatform {
 
 	private String name = null;
 	private String driverClass = null;
 	
-	public DatabaseType() {}
+	public DatabasePlatform() {}
 	
-	public DatabaseType(String name, String driverClass) {
+	public DatabasePlatform(String name, String driverClass) {
 		
 		this.name = name;
 		this.driverClass = driverClass;
