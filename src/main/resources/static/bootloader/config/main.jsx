@@ -58,12 +58,50 @@ class DatabaseInitStage extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+
+			usernameValid: true,
+			usernameHelperText: "",
+		};
+
+		this.databaseTypes = [];
+
+		let me = this;
+
+		$.get("../bootloader/config/db_types", (data)=> {
+
+			this.databaseTypes = data;
+		});
 	}
 
 	render() {
 
 		return(
-			<Typography>чет типо того</Typography>
+
+			<div class="config-stage-container">
+				
+				<div style={{width: "35%"}}>
+
+					<TextField fullWidth id="db-username-field" error={!this.state.usernameValid} helperText={this.state.usernameHelperText} label="Username" />
+					<div style={{height: "10px"}}></div>
+					<TextField fullWidth id="db-password-field" error={!this.state.passwordValid} helperText={this.state.passwordHelperText} label="Password" />
+					<div style={{height: "10px"}}></div>
+					<TextField fullWidth id="db-url-field" error={!this.state.urlValid} helperText={this.state.urlHelperText} label="Database url" />
+					<div style={{height: "10px"}}></div>
+
+					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
+
+					<Select id="db-type-select" labelId="db-type-label">
+
+						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
+
+					</Select>
+
+				</div>
+
+				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "15px", right: "10px"}}>NEXT</button>
+
+			</div>
 		);
 	}
 }
@@ -102,7 +140,7 @@ class ProductKeyStage extends React.Component {
 
 		return (
 
-			<div style={{display: "flex", justifyContent: "center", alignItems: "center", boxSizing: "border-box", position: "relative", height: "100%", width: "100%"}}>
+			<div class="config-stage-container">
 				
 				<div style={{width: "45%"}}>
 				
