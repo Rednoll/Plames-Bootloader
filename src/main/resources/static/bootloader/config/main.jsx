@@ -66,7 +66,11 @@ class DatabaseInitStage extends React.Component {
 		this.state = {
 
 			usernameValid: true,
-			usernameHelperText: ""
+			usernameHelperText: "",
+			passwordValid: true,
+			passwordHelperText: "",
+			urlValid: true,
+			urlHelperText: ""
 		};
 
 		this.databaseTypes = [];
@@ -95,9 +99,9 @@ class DatabaseInitStage extends React.Component {
 					<TextField fullWidth id="db-url-field" error={!this.state.urlValid} helperText={this.state.urlHelperText} label="Database url" />
 					<div style={{height: "10px"}}></div>
 
-					<InputLabel fullWidth id="db-type-label" color="primary">Database type</InputLabel>
+					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
 
-					<Select id="db-type-select" labelId="db-type-label">
+					<Select labelWidth="100%" id="db-type-select" labelId="db-type-label">
 
 						{this.databaseTypes.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
 
