@@ -85,7 +85,7 @@ public class PlamesBootloader {
 
 		List<String> listArgs = new ArrayList<>(Arrays.asList(args));
 	
-		File prodApplicationPropsFile = new File("./config/application-prod.properties");
+		File prodApplicationPropsFile = new File("./config", "application-prod.properties");
 		
 		if(prodApplicationPropsFile.exists()) {
 			
@@ -94,6 +94,8 @@ public class PlamesBootloader {
 				PROD_APPLICATON_PROPS.load(new FileInputStream(prodApplicationPropsFile));
 			
 				listArgs.add("-Dspring.profiles.active=prod");
+				
+				System.out.println("OK!");
 			}
 			catch(FileNotFoundException e) {
 				
