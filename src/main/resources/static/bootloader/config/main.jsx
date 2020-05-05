@@ -87,6 +87,8 @@ class DatabaseInitStage extends React.Component {
 
 	render() {
 
+		const {classes} = this.props;
+
 		return(
 
 			<div class="config-stage-container">
