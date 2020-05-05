@@ -93,11 +93,11 @@ class DatabaseInitStage extends React.Component {
 				<div style={{width: "35%"}}>
 
 					<TextField fullWidth id="db-username-field" error={!this.state.usernameValid} helperText={this.state.usernameHelperText} label="Username" />
-					<div style={{height: "10px"}}></div>
+					<div style={{height: "15px"}}></div>
 					<TextField fullWidth id="db-password-field" error={!this.state.passwordValid} helperText={this.state.passwordHelperText} label="Password" />
-					<div style={{height: "10px"}}></div>
+					<div style={{height: "15px"}}></div>
 					<TextField fullWidth id="db-url-field" error={!this.state.urlValid} helperText={this.state.urlHelperText} label="Database url" />
-					<div style={{height: "10px"}}></div>
+					<div style={{height: "15px"}}></div>
 
 					<InputLabel id="db-type-label" color="primary">Database type</InputLabel>
 
