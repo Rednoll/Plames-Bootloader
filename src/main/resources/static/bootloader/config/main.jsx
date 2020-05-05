@@ -110,7 +110,7 @@ class DatabaseInitStage extends React.Component {
 
 		}).always((valid)=> {
 
-			if(valid) {
+			if(valid == true) {
 
 				this.setState({mainErrorText: ""});
 
@@ -150,7 +150,7 @@ class DatabaseInitStage extends React.Component {
 					</Select>
 					</FormControl>
 					<div style={{height: "15px"}}></div>
-					
+
 					<Typography fullWidth align="center" color="textPrimary">{this.state.mainErrorText}</Typography>
 
 				</div>
