@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -77,6 +76,7 @@ public class PlamesBootloader {
 	public static ObjectMapper JSON = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	
 	public static File DATA_FOLDER = new File("./data");
+	public static File CONFIG_FOLDER = new File("./config");
 	
 	public static Properties MAIN_PROPS = null;
 	
@@ -86,18 +86,18 @@ public class PlamesBootloader {
 	
 	public static Environment ENV = null;
 	
-	public static List<String> launchArgs = null;
+	public static List<String> JVM_ARGS = null;
+	public static List<String> LAUNCH_ARGS = null;
 	
 	public static void main(String[] args) {
 
-		for(String str : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
-			
-			System.out.println("arg: "+str);
-		}
+		JVM_ARGS = ManagementFactory.getRuntimeMXBean().getInputArguments();
 		
 		List<String> listArgs = new ArrayList<>(Arrays.asList(args));
 		
-		File prodApplicationPropsFile = new File("./config", "application-prod.properties");
+		LAUNCH_ARGS = new ArrayList<>(listArgs);
+		
+		File prodApplicationPropsFile = new File(CONFIG_FOLDER, "application-prod.properties");
 		
 		if(prodApplicationPropsFile.exists()) {
 			
@@ -116,8 +116,6 @@ public class PlamesBootloader {
 				e.printStackTrace();
 			}
 		}
-		
-		launchArgs = new ArrayList<>(listArgs);
 		
 		CONTEXT = SpringApplication.run(PlamesBootloader.class, listArgs.toArray(new String[0]));
 		ENV = CONTEXT.getEnvironment();
@@ -150,7 +148,7 @@ public class PlamesBootloader {
 			DATA_FOLDER.mkdirs();
 		}
 		
-		File propertiesFile = new File(DATA_FOLDER, "main.properties");
+		File propertiesFile = new File("main.properties");
 		
 		MAIN_PROPS = new Properties();
 		
@@ -262,18 +260,29 @@ public class PlamesBootloader {
 	
 	public static void reboot() {
 		
-		/*
 		try {
+			
+			String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+			File currentJar = new File(PlamesBootloader.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			
+			if(!currentJar.getName().endsWith(".jar")) return;
+
+			final ArrayList<String> command = new ArrayList<String>();
+				command.add(javaBin);
+				command.addAll(JVM_ARGS);
+				command.add("-jar");
+				command.add(currentJar.getPath());
+				command.addAll(LAUNCH_ARGS);
 			
 			ProcessBuilder builder = new ProcessBuilder(command);
 			builder.start();
+			
 			System.exit(0);
 		}
-		catch(URISyntaxException e) {
+		catch(Exception e) {
 			
 			e.printStackTrace();
 		}
-		*/
 	}
 	
 	public static void requestActivation(Module module) {
@@ -294,7 +303,7 @@ public class PlamesBootloader {
 	
 	public static void saveMainProps() {
 		
-		File propertiesFile = new File(DATA_FOLDER, "main.properties");
+		File propertiesFile = new File("main.properties");
 		
 		try {
 			
@@ -317,7 +326,7 @@ public class PlamesBootloader {
 	
 	public static void saveProdApplicationProps() {
 		
-		File prodApplicationPropsFile = new File("./config", "application-prod.properties");
+		File prodApplicationPropsFile = new File(CONFIG_FOLDER, "application-prod.properties");
 		
 		try {
 			

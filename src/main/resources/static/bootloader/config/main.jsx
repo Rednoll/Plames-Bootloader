@@ -72,7 +72,7 @@ class RootUserInitStage extends React.Component {
 
 		if(username.match(usernameValidateRegex)) {
 
-			registerForm.setState({
+			this.setState({
 
 				usernameValid: true,
 				usernameHelperText: ""
@@ -80,7 +80,7 @@ class RootUserInitStage extends React.Component {
 		}
 		else {
 
-			registerForm.setState({
+			this.setState({
 
 				usernameValid: false,
 				usernameHelperText: "Username incorrect! Only latin letters and numbers. 3-16 chars."
