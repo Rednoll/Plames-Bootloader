@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @Profile(value = "init")
 @EnableWebSecurity
-@Order(Ordered.LOWEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class SpringSecurityBootloaderInitConfig extends WebSecurityConfigurerAdapter {
 
 	public SpringSecurityBootloaderInitConfig() {
