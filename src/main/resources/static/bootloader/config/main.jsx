@@ -167,7 +167,11 @@ class RebootStage extends React.Component {
 
 	reboot() {
 
-		$.get("../bootloader/reboot");
+		$.ajax({
+
+			url: "../bootloader/reboot",
+			async: false
+		});
 	}
 
 	waitReboot() {
@@ -191,6 +195,7 @@ class RebootStage extends React.Component {
 
 	componentDidMount() {
 
+		this.reboot();
 		this.waitReboot();
 	}
 
