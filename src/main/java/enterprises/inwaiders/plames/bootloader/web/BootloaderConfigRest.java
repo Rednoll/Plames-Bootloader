@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,10 @@ import enterprises.inwaiders.plames.bootloader.utils.DatabasePlatformsRegistry;
 @RestController
 @RequestMapping("/bootloader/config")
 public class BootloaderConfigRest {
-
+	
+	@Autowired
+	private BCryptPasswordEncoder passEncoder;
+	
 	@GetMapping("/verify")
 	public ResponseEntity<Boolean> verifyProductKey(String productKey) {
 		
@@ -60,5 +64,19 @@ public class BootloaderConfigRest {
 			
 			return ResponseEntity.badRequest().body(false);
 		}
+	}
+	
+	@PostMapping("/root_user/data")
+	public ResponseEntity<Boolean> dbData(String username, String pass) {
+		
+		String encodedPass = passEncoder.encode(pass);
+		
+		Properties props = PlamesBootloader.MAIN_PROPS;
+			props.setProperty("plames.root_user.username", username);
+			props.setProperty("plames.root_user.pass", encodedPass);
+		
+		PlamesBootloader.saveMainProps();
+			
+		return ResponseEntity.ok().body(true);
 	}
 }

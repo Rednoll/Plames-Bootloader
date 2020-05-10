@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -84,10 +86,17 @@ public class PlamesBootloader {
 	
 	public static Environment ENV = null;
 	
+	public static List<String> launchArgs = null;
+	
 	public static void main(String[] args) {
 
+		for(String str : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
+			
+			System.out.println("arg: "+str);
+		}
+		
 		List<String> listArgs = new ArrayList<>(Arrays.asList(args));
-	
+		
 		File prodApplicationPropsFile = new File("./config", "application-prod.properties");
 		
 		if(prodApplicationPropsFile.exists()) {
@@ -107,6 +116,8 @@ public class PlamesBootloader {
 				e.printStackTrace();
 			}
 		}
+		
+		launchArgs = new ArrayList<>(listArgs);
 		
 		CONTEXT = SpringApplication.run(PlamesBootloader.class, listArgs.toArray(new String[0]));
 		ENV = CONTEXT.getEnvironment();
@@ -247,6 +258,22 @@ public class PlamesBootloader {
 		result = new RegistrationStage(result);
 		
 		return result;
+	}
+	
+	public static void reboot() {
+		
+		/*
+		try {
+			
+			ProcessBuilder builder = new ProcessBuilder(command);
+			builder.start();
+			System.exit(0);
+		}
+		catch(URISyntaxException e) {
+			
+			e.printStackTrace();
+		}
+		*/
 	}
 	
 	public static void requestActivation(Module module) {

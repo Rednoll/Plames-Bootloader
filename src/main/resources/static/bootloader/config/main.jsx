@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles, ThemeProvider } from "@material-ui/core/styles";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import styles from "./jss_styles.js";
 import mainTheme from "../common/jss_styles.jsx";
@@ -20,12 +21,14 @@ import ClipboardJS from "clipboard";
 
 import "./main.css";
 
+const usernameValidateRegex = /^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-_]{3,16}$/;
+
 let steps = [
 	
 	{ui: ()=> {return <ProductKeyStage />}, name: "Product key verification"},
 	{ui: ()=> {return <DatabaseInitStage />}, name: "Database settings"},
-	{ui: ()=> {return <RootUserInitStage />}, name: "Root user settings"}
-
+	{ui: ()=> {return <RootUserInitStage />}, name: "Root user settings"},
+	{ui: ()=> {return <RebootStage />}, name: "Plames reboot"}
 ];
 
 let configRef = React.createRef();
@@ -49,6 +52,86 @@ class RootUserInitStage extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+
+			usernameValid: true,
+			usernameHelperText: "",
+			passValid: true,
+			passReValid: true,
+			passReHelperText: ""
+		}
+
+		this.passValidator = this.passValidator.bind(this);
+		this.usernameValidator = this.usernameValidator.bind(this);
+		this.onClick = this.onClick.bind(this);
+	}
+
+	usernameValidator() {
+
+		let username = document.querySelector("#root-username-field").value;
+
+		if(username.match(usernameValidateRegex)) {
+
+			registerForm.setState({
+
+				usernameValid: true,
+				usernameHelperText: ""
+			});
+		}
+		else {
+
+			registerForm.setState({
+
+				usernameValid: false,
+				usernameHelperText: "Username incorrect! Only latin letters and numbers. 3-16 chars."
+			});
+		}
+	}
+
+	passValidator() {
+
+		let pass = document.querySelector("#root-pass-field").value;
+		let passRe = document.querySelector("#root-pass-re-field").value;
+
+		if(pass.localeCompare(passRe) == 0) {
+
+			this.setState({
+
+				passReValid: true,
+				passReHelperText: ""
+			});
+		}
+		else {
+
+			this.setState({
+
+				passReValid: false,
+				passReHelperText: "Passwords not equals!"
+			});
+		}
+	}
+
+	onClick() {
+
+		let me = this;
+
+		$.ajax({
+
+			url: "../bootloader/config/root_user/data",
+			method: "POST",
+			data: {
+
+				username: $("#root-username-field").val(),
+				pass: $("#root-pass-field").val()
+			}
+
+		}).always((valid)=> {
+
+			if(valid) {
+
+				goToNextStep();
+			}
+		});
 	}
 
 	render() {
@@ -56,6 +139,76 @@ class RootUserInitStage extends React.Component {
 		return(
 
 			<div class="config-stage-container">
+
+				<div style={{width: "35%"}}>
+
+					<TextField fullWidth onChange={this.usernameValidator} id="root-username-field" error={!this.state.usernameValid} helperText={this.state.usernameHelperText} label="Username" />
+					<div style={{height: "15px"}}></div>
+					<TextField fullWidth onChange={this.passValidator} type="password" id="root-pass-field" error={!this.state.passValid} label="Password" />
+					<div style={{height: "15px"}}></div>
+					<TextField fullWidth onChange={this.passValidator} type="password" id="root-pass-re-field" error={!this.state.passReValid} helperText={this.state.passReHelperText} label="Re enter" />
+					
+				</div>
+
+				<button className="accent-button" onClick={this.onClick} style={{position: "absolute", bottom: "15px", right: "10px"}}>NEXT</button>
+
+			</div>
+		);
+	}
+}
+
+class RebootStage extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+		this.waitReboot = this.waitReboot.bind(this);
+	}
+
+	reboot() {
+
+		$.get("../bootloader/reboot");
+	}
+
+	waitReboot() {
+
+		let me = this;
+
+		$.ajax({
+
+			url: "../bootloader/time",
+			timeout: 3600
+		
+		}).success(()=> {
+
+			window.location.href = "../";
+
+		}).fail(()=> {
+
+			me.waitReboot();
+		});
+	}
+
+	componentDidMount() {
+
+		this.waitReboot();
+	}
+
+	render() {
+
+		const { classes } = this.props;
+
+		return(
+
+			<div class="config-stage-container" style={{flexDirection: "column"}}>
+				
+				<div style={{width: "50%"}}>
+					
+					<img class="plames-icon" src="../resources/bootloader/common/images/plames-color-icon.svg"></img>
+
+					<CircularProgress />
+
+				</div>
 
 			</div>
 		);

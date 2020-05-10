@@ -8,3 +8,16 @@
 	height: 100%;
 	width: 100%;
 }
+
+.plames-icon {
+
+	position: relative;
+
+	box-sizing: border-box;
+
+	width: auto;
+	height: 20%;
+
+	margin-top: 5%;
+	margin-bottom: 2.5%;
+}
