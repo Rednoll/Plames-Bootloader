@@ -196,7 +196,8 @@ class RebootStage extends React.Component {
 	componentDidMount() {
 
 		this.reboot();
-		this.waitReboot();
+
+		setTimeout(5000, this.waitReboot);
 	}
 
 	render() {
