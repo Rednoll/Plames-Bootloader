@@ -267,11 +267,11 @@ public class PlamesBootloader {
 			
 			if(SystemUtils.IS_OS_WINDOWS) {
 				
-				command = "cmd /c run.bat";
+				command = "cmd /c \""+new File("run.bat").getAbsolutePath()+"\"";
 			}
 			else if(SystemUtils.IS_OS_UNIX) {
 				
-				command = "run.sh";
+				command = "\""+new File("run.sh").getAbsolutePath()+"\"";
 			}
 			
 			ProcessBuilder builder = new ProcessBuilder(command);
