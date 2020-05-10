@@ -57,7 +57,11 @@ dependencies {
 
 	compile group: 'io.github.classgraph', name: 'classgraph', version: '4.8.52'
 	
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+
 	compile project(':Plames-API')
+	
 }
 
 test {

@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -262,17 +263,16 @@ public class PlamesBootloader {
 		
 		try {
 			
-			String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
-			File currentJar = new File(PlamesBootloader.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			String command = null;
 			
-			if(!currentJar.getName().endsWith(".jar")) return;
-
-			final ArrayList<String> command = new ArrayList<String>();
-				command.add(javaBin);
-				command.addAll(JVM_ARGS);
-				command.add("-jar");
-				command.add(currentJar.getPath());
-				command.addAll(LAUNCH_ARGS);
+			if(SystemUtils.IS_OS_WINDOWS) {
+				
+				command = "cmd /c run.bat";
+			}
+			else if(SystemUtils.IS_OS_UNIX) {
+				
+				command = "run.sh";
+			}
 			
 			ProcessBuilder builder = new ProcessBuilder(command);
 			builder.start();
