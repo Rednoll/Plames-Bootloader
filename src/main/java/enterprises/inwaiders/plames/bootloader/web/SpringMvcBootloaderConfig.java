@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 //@Import(value= {SpringSecurityConfig.class})
-public class SpringMvcConfig implements WebMvcConfigurer {
+public class SpringMvcBootloaderConfig implements WebMvcConfigurer {
 
     @Autowired
     private Environment env;

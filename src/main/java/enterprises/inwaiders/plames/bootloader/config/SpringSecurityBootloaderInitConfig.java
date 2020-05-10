@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @Profile(value = "init")
 @EnableWebSecurity
-public class SpringSecurityInitConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityBootloaderInitConfig extends WebSecurityConfigurerAdapter {
 
-	public SpringSecurityInitConfig() {
+	public SpringSecurityBootloaderInitConfig() {
 		super();
 		
 	}

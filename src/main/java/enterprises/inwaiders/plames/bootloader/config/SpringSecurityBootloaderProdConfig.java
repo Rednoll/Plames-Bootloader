@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @Profile(value = "prod")
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityBootloaderProdConfig extends WebSecurityConfigurerAdapter {
 
-	public SpringSecurityConfig() {
+	public SpringSecurityBootloaderProdConfig() {
 		super();
 		
 	}
