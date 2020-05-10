@@ -183,7 +183,7 @@ class RebootStage extends React.Component {
 			url: "../bootloader/time",
 			timeout: 3600
 		
-		}).success(()=> {
+		}).done(()=> {
 
 			window.location.href = "../";
 

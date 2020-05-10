@@ -33,7 +33,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 		
 		if(Arrays.asList(env.getActiveProfiles()).contains("init")) {
 			
-			registry.addInterceptor(new ConfigInterceptor()).addPathPatterns("/**").excludePathPatterns("/resources/**", "/bootloader/config/**");
+			registry.addInterceptor(new ConfigInterceptor()).addPathPatterns("/**").excludePathPatterns("/resources/**", "/bootloader/**");
 		}
 	}
     
