@@ -13,7 +13,7 @@ public class BootloaderController {
 	@GetMapping("/reboot")
 	public void reboot() {
 	
-		PlamesBootloader.reboot();
+		new Thread(()-> PlamesBootloader.reboot()).start();
 	}
 	
 	@GetMapping("/time")
