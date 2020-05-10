@@ -189,7 +189,7 @@ class RebootStage extends React.Component {
 
 		}).fail(()=> {
 
-			me.waitReboot();
+			setTimeout(me.waitReboot, 250);
 		});
 	}
 
