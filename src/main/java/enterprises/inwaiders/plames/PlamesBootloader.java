@@ -275,6 +275,8 @@ public class PlamesBootloader {
 			}
 			
 			ProcessBuilder builder = new ProcessBuilder(command);
+				builder.directory(new File("./"));
+			
 			builder.start();
 			
 			System.exit(0);
