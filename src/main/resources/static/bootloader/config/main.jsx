@@ -197,7 +197,7 @@ class RebootStage extends React.Component {
 
 		this.reboot();
 
-		setTimeout(5000, this.waitReboot);
+		setTimeout(this.waitReboot, 5000);
 	}
 
 	render() {
@@ -208,13 +208,9 @@ class RebootStage extends React.Component {
 
 			<div class="config-stage-container" style={{flexDirection: "column"}}>
 				
-				<div style={{width: "50%"}}>
-					
-					<img class="plames-icon" src="../resources/bootloader/common/images/plames-color-icon.svg"></img>
+				<img className="plames-icon" src="../resources/bootloader/common/images/plames-color-icon.svg"></img>
 
-					<CircularProgress />
-
-				</div>
+				<CircularProgress />
 
 			</div>
 		);
