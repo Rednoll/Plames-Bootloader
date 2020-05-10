@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,7 @@ import enterprises.inwaiders.plames.bootloader.utils.DatabasePlatformsRegistry;
 @RequestMapping("/bootloader/config")
 public class BootloaderConfigRest {
 	
-	@Autowired
-	private BCryptPasswordEncoder passEncoder;
+	private BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
 	
 	@GetMapping("/verify")
 	public ResponseEntity<Boolean> verifyProductKey(String productKey) {
