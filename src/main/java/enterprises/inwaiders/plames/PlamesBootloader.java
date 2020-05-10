@@ -263,19 +263,18 @@ public class PlamesBootloader {
 		
 		try {
 			
-			String command = null;
+			ProcessBuilder builder = null;
 			
 			if(SystemUtils.IS_OS_WINDOWS) {
 				
-				command = "cmd /c \""+new File("run.bat").getAbsolutePath()+"\"";
+				builder = new ProcessBuilder("cmd", "/c", "run.bat");
 			}
 			else if(SystemUtils.IS_OS_UNIX) {
 				
-				command = "\""+new File("run.sh").getAbsolutePath()+"\"";
+				builder = new ProcessBuilder("run.sh");
 			}
 			
-			ProcessBuilder builder = new ProcessBuilder(command);
-				builder.directory(new File(System.getProperty("user.dir")));
+			builder.directory(new File(System.getProperty("user.dir")));
 			
 			builder.start();
 			
