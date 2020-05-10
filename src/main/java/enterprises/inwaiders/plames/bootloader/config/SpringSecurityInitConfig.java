@@ -7,11 +7,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@Profile(value = "prod")
+@Profile(value = "init")
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityInitConfig extends WebSecurityConfigurerAdapter {
 
-	public SpringSecurityConfig() {
+	public SpringSecurityInitConfig() {
 		super();
 		
 	}
@@ -19,7 +19,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
         
+		http	
+			.csrf().disable();
+
 		http
-			.authorizeRequests().antMatchers("/bootloader/reboot").permitAll();
+			.authorizeRequests().antMatchers("/**").permitAll();
 	}
 }
